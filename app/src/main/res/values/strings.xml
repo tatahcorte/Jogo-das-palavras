@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Palavras Sortidas</string>
     <string name="start">Começar</string>
+    <string name="responder">Responder</string>
 </resources>
