@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ActivityJogo"></activity>
+        <activity android:name=".view.ActivityJogo" />
+        <activity android:name=".view.ActivityHistorico"></activity>
     </application>
 
 </manifest>
