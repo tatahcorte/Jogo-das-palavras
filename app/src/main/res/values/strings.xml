@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">JogoDasPalavras</string>
+    <string name="app_name">Palavras Sortidas</string>
+    <string name="start">Começar</string>
 </resources>
