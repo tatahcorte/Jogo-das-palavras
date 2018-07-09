@@ -69,4 +69,9 @@ public abstract class AbstractDao<T> {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
         return db.update(contract.getTableName(), contract.serialize(entity), "ID = ?", new String[]{ String.valueOf(id) });
     }
+
+    public void clear(){
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        db.delete(contract.getTableName(), null, null);
+    }
 }

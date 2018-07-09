@@ -3,4 +3,8 @@
     <string name="start">Começar</string>
     <string name="responder">Responder</string>
     <string name="recorde">Recorde</string>
+    <string name="ok">Ok</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cuidado">Cuidado</string>
+    <string name="apagar_dados_historico">Isso vai apagar todo o histórico de partidas</string>
 </resources>
