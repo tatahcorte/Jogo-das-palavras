@@ -1,15 +1,17 @@
 package tatahcorte.jogodaspalavras.entidade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Partida {
 
-    private List<Integer> sinonimosAnteriores;
+    private List<Integer> sinonimosAnteriores = new ArrayList<>();
     private Sinonimo sinonimo;
     private String sinonimosDica;
     private String sinonimoEscondido;
-    private List<Integer> posicoesReveladas;
+    private List<Integer> posicoesReveladas = new ArrayList<>();
     private Long pontuacaoAcumulada;
+    private int coracoes;
 
     public List<Integer> getSinonimosAnteriores() {
         return sinonimosAnteriores;
@@ -57,5 +59,13 @@ public class Partida {
 
     public void setPontuacaoAcumulada(Long pontuacaoAcumulada) {
         this.pontuacaoAcumulada = pontuacaoAcumulada;
+    }
+
+    public int getCoracoes() {
+        return coracoes;
+    }
+
+    public void setCoracoes(int coracoes) {
+        this.coracoes = coracoes;
     }
 }

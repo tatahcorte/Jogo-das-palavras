@@ -10,8 +10,6 @@ public class Sinonimo {
     private int id;
     private String sinonimos;
 
-    private List<String> list;
-
     public int getId() {
         return id;
     }
@@ -30,9 +28,6 @@ public class Sinonimo {
 
     //Cria uma lista com as palavras salvas no banco
     public List<String> toList(){
-        if(list == null){
-            list = new ArrayList<>(Arrays.asList(sinonimos.split(",")));
-        }
-        return list;
+        return new ArrayList<>(Arrays.asList(sinonimos.split(",")));
     }
 }
