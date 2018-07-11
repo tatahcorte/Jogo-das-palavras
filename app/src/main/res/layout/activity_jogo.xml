@@ -16,15 +16,40 @@
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="vertical"
         android:padding="8dp">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Nivel 10"
-            style="@style/Base.TextAppearance.AppCompat.Medium"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/labelNivel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nivel"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_marginEnd="10dp"/>
+            <TextView
+                android:id="@+id/textViewNivel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10"
+                style="@style/Base.TextAppearance.AppCompat.Medium"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Pontos: 10000" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/labelPontos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pontos"
+                android:layout_marginEnd="10dp"/>
+            <TextView
+                android:id="@+id/textViewPontos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10000" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -36,26 +61,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         <ImageView
+            android:id="@+id/coracao1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_32dp"
             android:layout_marginEnd="8dp"/>
         <ImageView
+            android:id="@+id/coracao2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_32dp"
             android:layout_marginEnd="8dp"/>
         <ImageView
+            android:id="@+id/coracao3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_32dp"
             android:layout_marginEnd="8dp"/>
         <ImageView
+            android:id="@+id/coracao4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_32dp"
             android:layout_marginEnd="8dp"/>
         <ImageView
+            android:id="@+id/coracao5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_favorite_32dp"
@@ -75,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
-        android:id="@+id/textViewForca"
+        android:id="@+id/textViewPalavraOculta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="___________"

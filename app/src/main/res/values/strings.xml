@@ -7,4 +7,6 @@
     <string name="cancelar">Cancelar</string>
     <string name="cuidado">Cuidado</string>
     <string name="apagar_dados_historico">Isso vai apagar todo o histórico de partidas</string>
+    <string name="nivel">Nivel</string>
+    <string name="pontos">Pontos:</string>
 </resources>

@@ -25,7 +25,7 @@ public abstract class AbstractDao<T> {
         return query(null);
     }
 
-    public List<T> query(String selection, String... selectionArgs) {
+    public List<T> query(String selection, String[] selectionArgs, String orderBy) {
         List<T> result = new ArrayList<>();
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
         CursorWrapper cursor = CursorWrapper.wrap(db.query(contract.getTableName(),
@@ -34,7 +34,7 @@ public abstract class AbstractDao<T> {
                 selectionArgs,
                 null,
                 null,
-                "ID"));
+                orderBy));
         if(cursor.moveToFirst()){
             do {
                 result.add(contract.deserialize(cursor));
@@ -44,14 +44,23 @@ public abstract class AbstractDao<T> {
         return result;
     }
 
+    public List<T> query(String selection, String... selectionArgs) {
+        return query(selection, selectionArgs, null);
+    }
+
     public T findOneById(long id) {
         List<T> result = query("ID = ?", String.valueOf(id));
-        return result.size() > 1 ? result.get(0) : null;
+        return result.size() > 0 ? result.get(0) : null;
     }
 
     public T findOne(String selection, String... selectionArgs) {
         List<T> result = query(selection, selectionArgs);
-        return result.size() > 1 ? result.get(0) : null;
+        return result.size() > 0 ? result.get(0) : null;
+    }
+
+    public T findOne(String selection, String[] selectionArgs, String orderBy) {
+        List<T> result = query(selection, selectionArgs, orderBy);
+        return result.size() > 0 ? result.get(0) : null;
     }
 
     public T insert(T entity) {

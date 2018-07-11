@@ -14,6 +14,12 @@ public class SinonimoDao extends AbstractDao<Sinonimo> {
     }
 
     public Sinonimo findOneRandom(List<Integer> exceto) {
-        return super.findOne(" ID NOT IN (?) ORDER BY RANDOM() LIMIT 1", TextUtils.join(",", exceto));
+        String where = null;
+        String[] parameters = null;
+        if(exceto != null && exceto.size() > 0){
+            where = " ID NOT IN (?) ";
+            parameters = new String[]{ TextUtils.join(",", exceto) };
+        }
+        return super.findOne(where, parameters, "RANDOM() LIMIT 1");
     }
 }

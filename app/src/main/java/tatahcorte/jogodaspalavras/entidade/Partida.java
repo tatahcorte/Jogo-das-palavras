@@ -10,7 +10,7 @@ public class Partida {
     private String sinonimosDica;
     private String sinonimoEscondido;
     private List<Integer> posicoesReveladas = new ArrayList<>();
-    private Long pontuacaoAcumulada;
+    private long pontuacaoAcumulada;
     private int coracoes;
 
     public List<Integer> getSinonimosAnteriores() {
@@ -53,7 +53,7 @@ public class Partida {
         this.posicoesReveladas = posicoesReveladas;
     }
 
-    public Long getPontuacaoAcumulada() {
+    public long getPontuacaoAcumulada() {
         return pontuacaoAcumulada;
     }
 

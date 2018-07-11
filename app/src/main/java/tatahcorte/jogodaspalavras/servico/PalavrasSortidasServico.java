@@ -65,6 +65,20 @@ public class PalavrasSortidasServico {
         return pontos;
     }
 
+    public String montarPalavraOculta(Partida partida){
+        StringBuilder resultado = new StringBuilder();
+        List<Integer> posicoesReveladas = partida.getPosicoesReveladas();
+        int count = partida.getSinonimoEscondido().length();
+        for(int x=0; x < count; x++){
+            if(posicoesReveladas.contains(x)){
+                resultado.append(partida.getSinonimoEscondido().charAt(x));
+            } else {
+                resultado.append("_");
+            }
+        }
+        return resultado.toString();
+    }
+
     private int getNewRand(int min, int max){
         return random.nextInt(max-min+1)+min;
     }
