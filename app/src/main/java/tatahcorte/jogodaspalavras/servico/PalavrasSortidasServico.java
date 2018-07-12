@@ -6,14 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import tatahcorte.jogodaspalavras.dao.SinonimoDao;
 import tatahcorte.jogodaspalavras.entidade.Partida;
-import tatahcorte.jogodaspalavras.entidade.Sinonimo;
 
 public class PalavrasSortidasServico {
 
     private Random random = new Random();
+    private SinonimoDao sinonimoDao = new SinonimoDao();
 
-    public Partida criarNovaPartida(Partida partidaExistente, Sinonimo sinonimo, int pontuacao){
+    public Partida criarNovaPartida(Partida partidaExistente, long pontuacao){
         if(partidaExistente == null){
             partidaExistente = new Partida();
         }
@@ -22,7 +23,8 @@ public class PalavrasSortidasServico {
             partidaExistente.getSinonimosAnteriores().add(partidaExistente.getSinonimo().getId());
         }
 
-        partidaExistente.setSinonimo(sinonimo);
+        partidaExistente.setPontuacaoAcumulada(partidaExistente.getPontuacaoAcumulada() + pontuacao);
+        partidaExistente.setSinonimo(sinonimoDao.findOneRandom(partidaExistente.getSinonimosAnteriores()));
 
         List<String> listaDeSinonimos = partidaExistente.getSinonimo().toList();
         int index = getNewRand(0, listaDeSinonimos.size()-1);

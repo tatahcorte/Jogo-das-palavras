@@ -1,14 +1,17 @@
 package tatahcorte.jogodaspalavras.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import tatahcorte.jogodaspalavras.R;
 import tatahcorte.jogodaspalavras.viewModel.PartidaViewModel;
@@ -48,6 +51,16 @@ public class ActivityJogo extends AppCompatActivity implements PartidaViewModel.
 
         partidaViewModel = ViewModelProviders.of(this).get(PartidaViewModel.class);
         partidaViewModel.atualizaDadosDaPartida(this);
+
+        btnResponder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                partidaViewModel.onRespostaClick(
+                    ActivityJogo.this
+                    , editTextResposta.getText().toString()
+                );
+            }
+        });
     }
 
     @Override
@@ -74,6 +87,18 @@ public class ActivityJogo extends AppCompatActivity implements PartidaViewModel.
     @Override
     public void setNivel(int nivel) {
         textViewNivel.setText(String.valueOf(nivel));
+    }
+
+    @Override
+    public void mostrarMensagemDeFimDePartida(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback) {
+        Toast.makeText(this, "Acabaram suas chances. Sua pontuaçao final foi: " + pontos, Toast.LENGTH_LONG).show();
+        callback.onClick(null, 1);
+    }
+
+    @Override
+    public void mostrarMensagemParabens(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback) {
+        Toast.makeText(this, "Parabens! Voce acertou. Sua pontuaçao foi: " + pontos, Toast.LENGTH_LONG).show();
+        callback.onClick(null, 1);
     }
 
     @Override

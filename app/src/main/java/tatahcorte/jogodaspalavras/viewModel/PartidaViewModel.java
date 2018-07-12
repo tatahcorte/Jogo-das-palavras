@@ -1,10 +1,8 @@
 package tatahcorte.jogodaspalavras.viewModel;
 
 import android.arch.lifecycle.ViewModel;
+import android.content.DialogInterface;
 
-import java.util.ArrayList;
-
-import tatahcorte.jogodaspalavras.dao.SinonimoDao;
 import tatahcorte.jogodaspalavras.entidade.Partida;
 import tatahcorte.jogodaspalavras.servico.PalavrasSortidasServico;
 
@@ -17,14 +15,12 @@ import tatahcorte.jogodaspalavras.servico.PalavrasSortidasServico;
 public class PartidaViewModel extends ViewModel {
 
     private Partida partidaAtual;
-    private SinonimoDao sinonimoDao = new SinonimoDao();
     private PalavrasSortidasServico servico = new PalavrasSortidasServico();
 
     public void atualizaDadosDaPartida(ActivityJogoInterface activity){
         if(partidaAtual == null){
             partidaAtual = servico.criarNovaPartida(
                 null
-                , sinonimoDao.findOneRandom(new ArrayList<Integer>())
                 , 0
             );
         }
@@ -36,15 +32,43 @@ public class PartidaViewModel extends ViewModel {
     }
 
     public void onRespostaClick(ActivityJogoInterface activity, String resposta){
-
+        if(partidaAtual.getSinonimoEscondido().equals(resposta)){
+            onPartidaGanha(activity);
+        } else {
+            onRespostaErrada(activity);
+        }
     }
 
-    private void onPartidaGanha(ActivityJogoInterface activity){
-
+    private void onPartidaGanha(final ActivityJogoInterface activity){
+        final long pontos = servico.calculaPontos(partidaAtual);
+        activity.mostrarMensagemParabens(partidaAtual.getSinonimoEscondido(), pontos, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                partidaAtual = servico.criarNovaPartida(partidaAtual, pontos);
+                atualizaDadosDaPartida(activity);
+            }
+        });
     }
 
-    private void onPartidaPerdida(ActivityJogoInterface activity){
+    private void onRespostaErrada(ActivityJogoInterface activity){
+        if(partidaAtual.getCoracoes() == 1){
+            onPartidaPerdida(activity);
+            return;
+        }
+        partidaAtual.setCoracoes(partidaAtual.getCoracoes()-1);
+        servico.revelarPosicao(partidaAtual);
+        atualizaDadosDaPartida(activity);
+    }
 
+    private void onPartidaPerdida(final ActivityJogoInterface activity){
+        partidaAtual.setCoracoes(0);
+        activity.mostrarMensagemDeFimDePartida(partidaAtual.getSinonimoEscondido(), partidaAtual.getPontuacaoAcumulada(), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                partidaAtual = servico.criarNovaPartida(null, 0);
+                atualizaDadosDaPartida(activity);
+            }
+        });
     }
 
     public interface ActivityJogoInterface{
@@ -53,5 +77,7 @@ public class PartidaViewModel extends ViewModel {
         void setCoracoes(int coracoes);
         void setPontos(long pontos);
         void setNivel(int nivel);
+        void mostrarMensagemDeFimDePartida(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback);
+        void mostrarMensagemParabens(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback);
     }
 }
