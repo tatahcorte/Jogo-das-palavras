@@ -1,10 +1,13 @@
 package tatahcorte.jogodaspalavras.entidade;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Partida {
 
+    private static final String TAG = Partida.class.getSimpleName();
     private List<Integer> sinonimosAnteriores = new ArrayList<>();
     private Sinonimo sinonimo;
     private String sinonimosDica;
@@ -42,6 +45,7 @@ public class Partida {
     }
 
     public void setSinonimoEscondido(String sinonimoEscondido) {
+        Log.d(TAG, "setSinonimoEscondido: " + sinonimoEscondido);
         this.sinonimoEscondido = sinonimoEscondido;
     }
 

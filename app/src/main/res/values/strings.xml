@@ -9,4 +9,11 @@
     <string name="apagar_dados_historico">Isso vai apagar todo o histórico de partidas</string>
     <string name="nivel">Nivel</string>
     <string name="pontos">Pontos:</string>
+    <string name="continuar">Continuar</string>
+    <string name="voltar">Voltar</string>
+    <string name="fim_de_jogo">Fim de jogo</string>
+    <string name="mensagem_fim_de_jogo">Acabaram suas chances. Sua pontuaçao final foi:</string>
+    <string name="palavra_oculta">A palavra oculta era: %1$s</string>
+    <string name="voce_acertou">Você acertou!</string>
+    <string name="mensagem_jogo_ganho">Pontos ganhos:</string>
 </resources>

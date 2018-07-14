@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import tatahcorte.jogodaspalavras.R;
+import tatahcorte.jogodaspalavras.utils.ActivityUtils;
 import tatahcorte.jogodaspalavras.viewModel.PartidaViewModel;
 
 public class ActivityJogo extends AppCompatActivity implements PartidaViewModel.ActivityJogoInterface {
@@ -91,14 +91,30 @@ public class ActivityJogo extends AppCompatActivity implements PartidaViewModel.
 
     @Override
     public void mostrarMensagemDeFimDePartida(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback) {
-        Toast.makeText(this, "Acabaram suas chances. Sua pontuaçao final foi: " + pontos, Toast.LENGTH_LONG).show();
-        callback.onClick(null, 1);
+        ActivityUtils.mostrarDialogoFimDeJogo(
+            this
+            , R.string.fim_de_jogo
+            , R.string.mensagem_fim_de_jogo
+            , String.valueOf(pontos)
+            , getString(R.string.palavra_oculta, sinonimoEscondido)
+            , callback, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    onBackPressed();
+                }
+            });
     }
 
     @Override
     public void mostrarMensagemParabens(String sinonimoEscondido, long pontos, DialogInterface.OnClickListener callback) {
-        Toast.makeText(this, "Parabens! Voce acertou. Sua pontuaçao foi: " + pontos, Toast.LENGTH_LONG).show();
-        callback.onClick(null, 1);
+        ActivityUtils.mostrarDialogoFimDeJogo(
+            this
+            , R.string.voce_acertou
+            , R.string.mensagem_jogo_ganho
+            , "+" + String.valueOf(pontos)
+            , null
+            , callback
+            , null);
     }
 
     @Override

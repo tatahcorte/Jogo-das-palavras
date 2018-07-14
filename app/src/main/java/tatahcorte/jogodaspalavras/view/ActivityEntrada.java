@@ -46,7 +46,7 @@ public class ActivityEntrada extends AppCompatActivity {
         limparHistorico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityUtils.showConfirmationDialog(
+                ActivityUtils.mostrarDialogoConfirmacao(
                     ActivityEntrada.this
                     , R.string.cuidado
                     , R.string.apagar_dados_historico
