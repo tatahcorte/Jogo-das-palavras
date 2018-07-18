@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import tatahcorte.jogodaspalavras.R;
-import tatahcorte.jogodaspalavras.dao.PontuacaoDao;
+import tatahcorte.jogodaspalavras.servico.PontuacaoServico;
 import tatahcorte.jogodaspalavras.utils.ActivityUtils;
 
 public class ActivityEntrada extends AppCompatActivity {
@@ -18,6 +18,8 @@ public class ActivityEntrada extends AppCompatActivity {
     private ImageButton limparHistorico;
     private Button comecarPartida;
 
+    private final PontuacaoServico pontuacaoServico = new PontuacaoServico();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class ActivityEntrada extends AppCompatActivity {
 
         comecarPartida = findViewById(R.id.btnStart);
         abrirHistorico = findViewById(R.id.btnViewScores);
-        limparHistorico = findViewById(R.id.btnClearScores);
+        limparHistorico = findViewById(R.id.btnLimparHistorico);
 
         comecarPartida.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +55,7 @@ public class ActivityEntrada extends AppCompatActivity {
                 , new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        PontuacaoDao pontuacaoDao = new PontuacaoDao();
-                        pontuacaoDao.clear();
+                        pontuacaoServico.limparTabela();
                     }
                 }, null);
             }

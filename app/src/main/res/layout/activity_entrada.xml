@@ -43,11 +43,11 @@
         android:src="@drawable/ic_flag_white_24dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorAccent"
-        app:layout_constraintEnd_toStartOf="@id/btnClearScores"
+        app:layout_constraintEnd_toStartOf="@id/btnLimparHistorico"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageButton
-        android:id="@+id/btnClearScores"
+        android:id="@+id/btnLimparHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_delete_white_24dp"

@@ -3,15 +3,23 @@ package tatahcorte.jogodaspalavras.entidade;
 import java.util.Date;
 
 public class Pontuacao {
-    private int id;
+    private Integer id;
     private Date data;
     private long pontuacao;
 
-    public int getId() {
+    public Pontuacao() {
+    }
+
+    public Pontuacao(Date data, long pontuacao) {
+        this.data = data;
+        this.pontuacao = pontuacao;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -41,6 +41,7 @@ public class PartidaViewModel extends ViewModel {
 
     private void onPartidaGanha(final ActivityJogoInterface activity){
         final long pontos = servico.calculaPontos(partidaAtual);
+        activity.setTentativa(null);
         activity.mostrarMensagemParabens(partidaAtual.getSinonimoEscondido(), pontos, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -62,6 +63,8 @@ public class PartidaViewModel extends ViewModel {
 
     private void onPartidaPerdida(final ActivityJogoInterface activity){
         partidaAtual.setCoracoes(0);
+        activity.setTentativa(null);
+        servico.saveScore(partidaAtual.getPontuacaoAcumulada());
         activity.mostrarMensagemDeFimDePartida(partidaAtual.getSinonimoEscondido(), partidaAtual.getPontuacaoAcumulada(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -71,8 +74,15 @@ public class PartidaViewModel extends ViewModel {
         });
     }
 
+    public void onSair() {
+        if(partidaAtual != null){
+            servico.saveScore(partidaAtual.getPontuacaoAcumulada());
+        }
+    }
+
     public interface ActivityJogoInterface{
         void setDica(String dica);
+        void setTentativa(String tentativa);
         void setPalavraOculta(String palavraOculta);
         void setCoracoes(int coracoes);
         void setPontos(long pontos);

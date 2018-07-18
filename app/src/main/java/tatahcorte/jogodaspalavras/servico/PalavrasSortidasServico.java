@@ -3,16 +3,20 @@ package tatahcorte.jogodaspalavras.servico;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+import tatahcorte.jogodaspalavras.dao.PontuacaoDao;
 import tatahcorte.jogodaspalavras.dao.SinonimoDao;
 import tatahcorte.jogodaspalavras.entidade.Partida;
+import tatahcorte.jogodaspalavras.entidade.Pontuacao;
 
 public class PalavrasSortidasServico {
 
     private Random random = new Random();
     private SinonimoDao sinonimoDao = new SinonimoDao();
+    private PontuacaoDao pontuacaoDao = new PontuacaoDao();
 
     public Partida criarNovaPartida(Partida partidaExistente, long pontuacao){
         if(partidaExistente == null){
@@ -91,5 +95,14 @@ public class PalavrasSortidasServico {
             posicoes.add(x);
         }
         return posicoes;
+    }
+
+    public void saveScore(long pontuacao) {
+        Calendar time = Calendar.getInstance();
+        time.set(Calendar.HOUR, 0);
+        time.set(Calendar.MINUTE, 0);
+        time.set(Calendar.SECOND, 0);
+        time.set(Calendar.MILLISECOND, 0);
+        pontuacaoDao.insert(new Pontuacao(time.getTime(), pontuacao));
     }
 }

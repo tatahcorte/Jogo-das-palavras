@@ -9,10 +9,10 @@ import tatahcorte.jogodaspalavras.utils.CursorWrapper;
 
 public class PontuacaoContract implements Contract<Pontuacao> {
 
-    private static final String TABLE_NAME = "TBL_PONTUACAO";
-    private static final String ID = "ID";
-    private static final String DATA = "DATA";
-    private static final String PONTUACAO = "PONTUCAO";
+    public static final String TABLE_NAME = "TBL_PONTUACAO";
+    public static final String ID = "ID";
+    public static final String DATA = "DATA";
+    public static final String PONTUACAO = "PONTUCAO";
 
     public static final String DDL =
         "CREATE TABLE " + TABLE_NAME + "(" +
