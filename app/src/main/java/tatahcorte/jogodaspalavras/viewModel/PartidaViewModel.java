@@ -58,6 +58,9 @@ public class PartidaViewModel extends ViewModel {
         }
         partidaAtual.setCoracoes(partidaAtual.getCoracoes()-1);
         servico.revelarPosicao(partidaAtual);
+        if (partidaAtual.getSinonimoEscondido().length() >= 11) {
+            servico.revelarPosicao(partidaAtual);
+        }
         atualizaDadosDaPartida(activity);
     }
 

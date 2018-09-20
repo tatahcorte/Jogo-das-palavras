@@ -17,16 +17,16 @@ public class PontuacaoServico {
     public List<Object> getListaPontuacaoAgrupadaPorData(){
         List<Pontuacao> pontuacaoList = pontuacaoDao.query(null
                 , null
-                , PontuacaoContract.DATA + " DESC, " + PontuacaoContract.PONTUACAO + " DESC");
+                , PontuacaoContract.DATA + " DESC, " + PontuacaoContract.PONTUACAO + " DESC ");
         Map<Long, List<Long>> agrupado = agruparPorData(pontuacaoList);
         return desagrupar(agrupado);
     }
 
-    public long getRecorde(){
+    public String getRecorde(){
         Pontuacao recorde = pontuacaoDao.findOne(
             PontuacaoContract.PONTUACAO + " = (SELECT MAX(" + PontuacaoContract.PONTUACAO+ ") FROM " + PontuacaoContract.TABLE_NAME + ")"
         );
-        return recorde != null ? recorde.getPontuacao() : 0L;
+        return recorde != null ? recorde.getNome() +  " : " + recorde.getPontuacao() : "0";
     }
 
     public void limparTabela(){

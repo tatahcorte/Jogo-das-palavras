@@ -16,4 +16,9 @@
     <string name="palavra_oculta">A palavra oculta era: %1$s</string>
     <string name="voce_acertou">Você acertou!</string>
     <string name="mensagem_jogo_ganho">Pontos ganhos:</string>
+    <string name="nome_jogador">Digite seu nome</string>
+    <string name="not_login">Não foi possível iniciar sessão</string>
+    <string name="server_client_id">491609802502-6evmrru3fjudkr7he6ib6a71djjflgmg.apps.googleusercontent.com</string>
+    <string name="tempo_acabou">Tempo Acabou!</string>
+    <string name="digite_a_palavra">Digite a Palavra</string>
 </resources>

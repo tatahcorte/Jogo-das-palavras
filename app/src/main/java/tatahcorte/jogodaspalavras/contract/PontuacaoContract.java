@@ -13,12 +13,14 @@ public class PontuacaoContract implements Contract<Pontuacao> {
     public static final String ID = "ID";
     public static final String DATA = "DATA";
     public static final String PONTUACAO = "PONTUCAO";
+    public static final String NOME = "NOME";
 
     public static final String DDL =
         "CREATE TABLE " + TABLE_NAME + "(" +
         " " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
         " " + DATA + " INTEGER, " +
-        " " + PONTUACAO + " INTEGER " +
+        " " + PONTUACAO + " INTEGER, " +
+        " " + NOME + " TEXT " +
         ");";
 
     @Override
@@ -27,6 +29,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
         pontuacao.setId(cursor.getInt(ID, 0));
         pontuacao.setData(new Date(cursor.getLong(DATA, new Date().getTime())));
         pontuacao.setPontuacao(cursor.getLong(PONTUACAO, 0L));
+        pontuacao.setNome(cursor.getString(NOME, null));
         return pontuacao;
     }
 
@@ -35,6 +38,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DATA, entity.getData().getTime());
         contentValues.put(PONTUACAO, entity.getPontuacao());
+        contentValues.put(NOME, entity.getNome());
         return contentValues;
     }
 
@@ -44,6 +48,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
             ID
             , DATA
             , PONTUACAO
+            , NOME
         };
     }
 

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -12,6 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import tatahcorte.jogodaspalavras.R;
@@ -57,9 +59,11 @@ public class ActivityJogo extends AppCompatActivity implements PartidaViewModel.
         btnResponder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 partidaViewModel.onRespostaClick(
                     ActivityJogo.this
                     , editTextResposta.getText().toString()
+
                 );
             }
         });

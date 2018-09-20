@@ -50,7 +50,7 @@ public class ActivityHistorico extends AppCompatActivity {
 
         textViewPontosRecorde = findViewById(R.id.textViewPontosRecorde);
         textViewPontosRecorde.setText(
-            String.valueOf(servico.getRecorde())
+                servico.getRecorde()
         );
     }
 

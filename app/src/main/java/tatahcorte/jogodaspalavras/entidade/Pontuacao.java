@@ -6,6 +6,7 @@ public class Pontuacao {
     private Integer id;
     private Date data;
     private long pontuacao;
+    private String nome;
 
     public Pontuacao() {
     }
@@ -38,4 +39,8 @@ public class Pontuacao {
     public void setPontuacao(long pontuacao) {
         this.pontuacao = pontuacao;
     }
+
+    public String getNome() { return nome; }
+
+    public void setNome(String nome) { this.nome = nome; }
 }
