@@ -11,7 +11,7 @@ import android.widget.TextView;
 import tatahcorte.jogodaspalavras.R;
 
 public class ActivityUtils {
-
+    //Caixa de confirmacao
     public static void mostrarDialogoConfirmacao(
             Context context
             , @StringRes int titulo

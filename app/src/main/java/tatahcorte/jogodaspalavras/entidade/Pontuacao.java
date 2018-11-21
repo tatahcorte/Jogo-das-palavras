@@ -1,7 +1,7 @@
 package tatahcorte.jogodaspalavras.entidade;
 
 import java.util.Date;
-
+//Representa a tabela de pontuacao
 public class Pontuacao {
     private Integer id;
     private Date data;

@@ -13,11 +13,11 @@ import tatahcorte.jogodaspalavras.entidade.Partida;
 import tatahcorte.jogodaspalavras.entidade.Pontuacao;
 
 public class PalavrasSortidasServico {
-
+    //Selecionar palavras randomicamente
     private Random random = new Random();
     private SinonimoDao sinonimoDao = new SinonimoDao();
     private PontuacaoDao pontuacaoDao = new PontuacaoDao();
-
+    //Nova partida
     public Partida criarNovaPartida(Partida partidaExistente, long pontuacao){
         if(partidaExistente == null){
             partidaExistente = new Partida();
@@ -29,7 +29,7 @@ public class PalavrasSortidasServico {
 
         partidaExistente.setPontuacaoAcumulada(partidaExistente.getPontuacaoAcumulada() + pontuacao);
         partidaExistente.setSinonimo(sinonimoDao.findOneRandom(partidaExistente.getSinonimosAnteriores()));
-
+        //Controla o que vai ser exibido e o Sinonimo que será a resposta
         List<String> listaDeSinonimos = partidaExistente.getSinonimo().toList();
         int index = getNewRand(0, listaDeSinonimos.size()-1);
         partidaExistente.setSinonimoEscondido(listaDeSinonimos.get(index));
@@ -42,7 +42,7 @@ public class PalavrasSortidasServico {
         partidaExistente.setCoracoes(5);
         return partidaExistente;
     }
-
+    //Revela posicao do Sinonimo escondido
     public int revelarPosicao(Partida partida){
         List<Integer> posicoes = listPosicoes(partida.getSinonimoEscondido());
         posicoes.removeAll(partida.getPosicoesReveladas());
@@ -50,7 +50,7 @@ public class PalavrasSortidasServico {
         partida.getPosicoesReveladas().add(posicao);
         return posicao;
     }
-
+    //Calculo das pontuacoes de acorddo com o numero de coracoes
     public long calculaPontos(Partida partida){
         long pontos = 10000;
         if(partida.getCoracoes() <= 4){
@@ -70,7 +70,7 @@ public class PalavrasSortidasServico {
         }
         return pontos;
     }
-
+    //Mostra o resultado
     public String montarPalavraOculta(Partida partida){
         StringBuilder resultado = new StringBuilder();
         List<Integer> posicoesReveladas = partida.getPosicoesReveladas();
@@ -96,7 +96,7 @@ public class PalavrasSortidasServico {
         }
         return posicoes;
     }
-
+    //salva pontuacao de acordo com hora jogada
     public void saveScore(long pontuacao) {
         Calendar time = Calendar.getInstance();
         time.set(Calendar.HOUR, 0);

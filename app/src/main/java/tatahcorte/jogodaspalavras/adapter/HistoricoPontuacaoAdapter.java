@@ -19,6 +19,7 @@ public class HistoricoPontuacaoAdapter extends RecyclerView.Adapter {
     @NonNull
     private final List<Object> itens;
 
+    // Adapter que gerencia, recicla e troca as informacoes do viewHolder
     public HistoricoPontuacaoAdapter(@NonNull List<Object> itens) {
         this.itens = itens;
     }
@@ -39,7 +40,7 @@ public class HistoricoPontuacaoAdapter extends RecyclerView.Adapter {
         }
         return viewHolder;
     }
-
+    //Chama a posicao em que o viewHolder se encontra
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof DataViewHolder){

@@ -13,7 +13,7 @@ import tatahcorte.jogodaspalavras.entidade.Pontuacao;
 public class PontuacaoServico {
 
     private final PontuacaoDao pontuacaoDao = new PontuacaoDao();
-
+    //Lista de Pontuacao
     public List<Object> getListaPontuacaoAgrupadaPorData(){
         List<Pontuacao> pontuacaoList = pontuacaoDao.query(null
                 , null
@@ -21,18 +21,18 @@ public class PontuacaoServico {
         Map<Long, List<Long>> agrupado = agruparPorData(pontuacaoList);
         return desagrupar(agrupado);
     }
-
+    //Retorna melhor pontuacao
     public String getRecorde(){
         Pontuacao recorde = pontuacaoDao.findOne(
             PontuacaoContract.PONTUACAO + " = (SELECT MAX(" + PontuacaoContract.PONTUACAO+ ") FROM " + PontuacaoContract.TABLE_NAME + ")"
         );
         return recorde != null ? recorde.getNome() +  " : " + recorde.getPontuacao() : "0";
     }
-
+    //Limpa Historico
     public void limparTabela(){
         pontuacaoDao.clear();
     }
-
+    //Organizar pontuacao por data
     private Map<Long, List<Long>> agruparPorData(List<Pontuacao> pontuacaoList){
         Map<Long, List<Long>> resultado = new HashMap<>();
         for (Pontuacao pontuacao : pontuacaoList) {

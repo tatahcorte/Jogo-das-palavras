@@ -59,14 +59,14 @@ public class ActivityEntrada extends AppCompatActivity implements View.OnClickLi
         botaoLogin.setOnClickListener(this);
 
         nomeJogador.setText(UsuarioServico.getInstance().getUser());
-
+        // Requests para login com o Google
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .requestProfile()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        updateUI(GoogleSignIn.getLastSignedInAccount(this));
+        updateUI(GoogleSignIn.getLastSignedInAccount(this)); // Ultimo login
 
         comecarPartida.setOnClickListener(new View.OnClickListener() {
             @Override

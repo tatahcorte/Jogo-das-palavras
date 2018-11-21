@@ -20,8 +20,8 @@ public class UsuarioServico {
             instance = new UsuarioServico(PreferenceManager.getDefaultSharedPreferences(App.getInstance()));
         }
         return instance;
-    }
-
+    }//sharedPreferences: persistência de Dados
+    // Retorna o Nome do Usuário para o login com o Google
     public String getUser(){
         return sharedPreferences.getString("USUARIO_LOGADO", null);
     }

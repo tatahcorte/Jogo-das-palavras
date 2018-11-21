@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, name, null, VERSION);
         this.context = context;
     }
-
+    //Chamada da criacao das tabelas
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SinonimoContract.DDL);
@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.e(TAG, "nao pode executar insert inicial ", e);
         }
     }
-
+    //Abre o arquivo "insert_inicial", lê linha a linha, faz a Transaction, finaliza, e fecha o arquivo
     public int insertFromFile(SQLiteDatabase db, Context context, int resourceId) throws IOException {
         // Reseting Counter
         int result = 0;
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
+    // Usando Classe App para fazer a conexao com o banco
     public static DatabaseHelper getInstance() {
         if(instance == null){
             instance = new DatabaseHelper(App.getInstance(), BuildConfig.DB_NAME);

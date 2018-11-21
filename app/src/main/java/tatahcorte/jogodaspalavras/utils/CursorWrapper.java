@@ -242,7 +242,7 @@ public class CursorWrapper implements Cursor {
     }
 
     //endregion
-
+    //Gets: Pegam o valor da coluna na posicao do cursor
     public String getString(String s, String def){
         String result = def;
         Integer index = getIndex(s);
@@ -278,7 +278,7 @@ public class CursorWrapper implements Cursor {
         }
         return result;
     }
-
+    //Cache das posicoes das colunas p poder procurar uma só vez
     private Integer getIndex(String s){
         if(!indexCache.containsKey(s)){
             indexCache.put(s, getColumnIndex(s));

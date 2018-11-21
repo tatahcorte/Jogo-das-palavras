@@ -14,7 +14,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
     public static final String DATA = "DATA";
     public static final String PONTUACAO = "PONTUCAO";
     public static final String NOME = "NOME";
-
+    //Criacao da tabela de Pontuacao
     public static final String DDL =
         "CREATE TABLE " + TABLE_NAME + "(" +
         " " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -22,7 +22,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
         " " + PONTUACAO + " INTEGER, " +
         " " + NOME + " TEXT " +
         ");";
-
+    //Deserializa para que possa ser usado em tela
     @Override
     public Pontuacao deserialize(CursorWrapper cursor) {
         Pontuacao pontuacao = new Pontuacao();
@@ -32,7 +32,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
         pontuacao.setNome(cursor.getString(NOME, null));
         return pontuacao;
     }
-
+    //Serializa para que possa ser usado no banco de dados
     @Override
     public ContentValues serialize(Pontuacao entity) {
         ContentValues contentValues = new ContentValues();
@@ -41,7 +41,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
         contentValues.put(NOME, entity.getNome());
         return contentValues;
     }
-
+    //Retorna campos da tabela
     @Override
     public String[] getColumns() {
         return new String[]{
@@ -51,7 +51,7 @@ public class PontuacaoContract implements Contract<Pontuacao> {
             , NOME
         };
     }
-
+    //Retorna o nome da tabela
     @Override
     public String getTableName() {
         return TABLE_NAME;
